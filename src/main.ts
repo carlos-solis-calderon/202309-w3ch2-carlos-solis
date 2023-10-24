@@ -1,28 +1,26 @@
-import { renderFooter } from './footer';
-import { renderHeader } from './header';
-import './main.scss';
-import { renderMenu } from './menu';
-import { router } from './router';
-import { MenuOption } from './types';
+import './style.css'
+import typescriptLogo from './typescript.svg'
+import viteLogo from '/vite.svg'
+import { setupCounter } from './counter.ts'
+import { characters } from './character.ts'
+const
 
-function main() {
-  console.log('Loaded main');
+document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="${viteLogo}" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://www.typescriptlang.org/" target="_blank">
+      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
+    </a>
+    <h1>Vite + TypeScript</h1>
+    <div class="card">
+      <button id="counter" type="button"></button>
+    </div>
+    <p class="read-the-docs">
+      Click on the Vite and TypeScript logos to learn more
+    </p>
+  </div>
+`
 
-  const menuOptions: MenuOption[] = [
-    { label: 'Home', path: '/' },
-    { label: 'Productos', path: '/products.html' },
-    { label: 'Clientes', path: '/clients.html' },
-    { label: 'GoT', path: '/got.html' },
-    { label: 'Acerca de', path: '/about.html' },
-  ];
-
-  const appElement = document.querySelector<HTMLDivElement>('#app');
-  if (appElement === null) return;
-
-  renderHeader(appElement);
-  renderMenu(appElement, menuOptions);
-  router(appElement);
-  renderFooter(appElement);
-}
-
-main();
+setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
